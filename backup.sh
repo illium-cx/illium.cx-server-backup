@@ -21,6 +21,8 @@ ARCHIVE_LIMIT=100
 LOG_FILE="$SERVER_PATH/backups/$(date +'%Y-%m-%d-%H-%M-%S')-backup.log"
 LOG_ARCHIVE="$SERVER_PATH/backups/archive/logs"
 
+SERVICE_STATUS="$(systemctl is-active --quiet "$SERVICE_NAME" && { echo "ACTIVE"; } || { echo "NOT ACTIVE"; })"
+
 exit_script() {
     local message="$1"
     echo "// $TIMESTAMP - $message - EXITING"
